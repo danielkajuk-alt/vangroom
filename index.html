@@ -649,16 +649,37 @@
   });
 </script>
 <script>
-  // ---- Wideo: pauza/wznów + poszanowanie ustawień "ogranicz ruch" ----
+  // ---- Wideo: pauza/wznów + poszanowanie ustawień "ogranicz ruch" + fallback błędu ----
   (function(){
     var vid = document.getElementById('vg-video');
     var btn = document.getElementById('vg-video-toggle');
+    var card = document.querySelector('.video-card');
     var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    if (reduceMotion) { vid.pause(); btn.textContent = '►'; }
+
+    // Wymuszenie autoplay (niektóre przeglądarki ignorują sam atrybut autoplay przy dynamicznym ładowaniu)
+    if (!reduceMotion){
+      var playPromise = vid.play();
+      if (playPromise !== undefined) {
+        playPromise.catch(function(){ /* przeglądarka zablokowała autoplay — użytkownik użyje przycisku */ btn.textContent = '►'; });
+      }
+    } else {
+      vid.pause();
+      btn.textContent = '►';
+    }
+
     btn.addEventListener('click', function(){
       if (vid.paused) { vid.play(); btn.textContent = '❚❚'; }
       else { vid.pause(); btn.textContent = '►'; }
     });
+
+    // Jeżeli plik wideo się nie załaduje (zły plik / zła nazwa / brak pliku obok index.html),
+    // pokaż czytelny komunikat zamiast pustego czarnego prostokąta.
+    vid.addEventListener('error', function(){
+      var msg = document.createElement('div');
+      msg.style.cssText = 'position:absolute; inset:0; display:flex; align-items:center; justify-content:center; padding:24px; text-align:center; color:#F2F1EC; font-family:Inter,sans-serif; font-size:14px; background:#1B2A34;';
+      msg.textContent = 'Nie można załadować pliku van-groom-cinematic.mp4 — sprawdźcie, czy jest w tym samym folderze co index.html i czy nazwa pliku dokładnie się zgadza.';
+      card.appendChild(msg);
+    }, true);
   })();
 </script>
 
