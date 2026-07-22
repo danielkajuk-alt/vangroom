@@ -1,0 +1,458 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Van Groom — mobilny groomer w Warszawie</title>
+<meta name="description" content="Van Groom — groomer przyjeżdża do Was. Strzyżenie, kąpiel i pielęgnacja psa bez wychodzenia z domu. Warszawa i okolice.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,500&family=Inter:wght@400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<link rel="icon" type="image/png" href="logo-icon.png">
+<style>
+  :root{
+    --pine: #1B2A34;
+    --pine-2: #253B48;
+    --cream: #F2F1EC;
+    --cream-2: #E8E4D8;
+    --amber: #7FA377;
+    --amber-dark: #5C7E56;
+    --berry: #9C3B4E;
+    --ink: #1C1B18;
+    --ink-soft: #4A4A44;
+    --line: rgba(28,27,24,0.12);
+    --max: 1160px;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    font-family:'Inter', sans-serif;
+    color:var(--ink);
+    background:var(--cream);
+    -webkit-font-smoothing:antialiased;
+  }
+  img{max-width:100%; display:block;}
+  a{color:inherit;}
+  .wrap{max-width:var(--max); margin:0 auto; padding:0 28px;}
+  .eyebrow{
+    font-family:'Space Mono', monospace;
+    text-transform:uppercase;
+    letter-spacing:0.14em;
+    font-size:12px;
+    font-weight:700;
+  }
+  h1,h2,h3{
+    font-family:'Fraunces', serif;
+    font-weight:600;
+    line-height:1.05;
+    margin:0;
+  }
+  p{line-height:1.6; margin:0;}
+  :focus-visible{outline:3px solid var(--amber); outline-offset:3px;}
+
+  /* ---------- NAV ---------- */
+  .nav{
+    position:sticky; top:0; z-index:40;
+    background:rgba(251,246,236,0.88);
+    backdrop-filter:saturate(140%) blur(8px);
+    border-bottom:1px solid var(--line);
+  }
+  .nav .wrap{display:flex; align-items:center; justify-content:space-between; padding-top:16px; padding-bottom:16px;}
+  .brand{display:flex; align-items:center; gap:10px; font-family:'Fraunces', serif; font-weight:600; font-size:20px;}
+  .brand .dot{width:10px; height:10px; border-radius:50%; background:var(--amber);}
+  .brand-mark{height:34px; width:auto; display:block;}
+  .nav-links{display:flex; gap:28px; font-size:14px; font-weight:500;}
+  .nav-links a{text-decoration:none; opacity:0.75; transition:opacity .15s;}
+  .nav-links a:hover{opacity:1;}
+  .nav-cta{
+    background:var(--pine); color:var(--cream); padding:10px 18px; border-radius:999px;
+    font-size:14px; font-weight:600; text-decoration:none; white-space:nowrap;
+  }
+  @media (max-width:720px){ .nav-links{display:none;} }
+
+  /* ---------- HERO ---------- */
+  .hero{
+    background:
+      radial-gradient(1100px 500px at 82% -10%, rgba(231,167,60,0.20), transparent 60%),
+      var(--pine);
+    color:var(--cream);
+    position:relative;
+    overflow:hidden;
+    padding:96px 0 40px;
+  }
+  .hero .wrap{position:relative; z-index:2;}
+  .hero-eyebrow{color:var(--amber); margin-bottom:18px; display:flex; align-items:center; gap:10px;}
+  .hero-eyebrow .pulse{
+    width:8px; height:8px; border-radius:50%; background:var(--amber);
+    box-shadow:0 0 0 0 rgba(231,167,60,0.6); animation:pulse 2.4s infinite;
+  }
+  @keyframes pulse{
+    0%{box-shadow:0 0 0 0 rgba(231,167,60,0.55);}
+    70%{box-shadow:0 0 0 10px rgba(231,167,60,0);}
+    100%{box-shadow:0 0 0 0 rgba(231,167,60,0);}
+  }
+  .hero h1{
+    font-size:clamp(38px, 6vw, 68px);
+    max-width:16ch;
+    letter-spacing:-0.01em;
+  }
+  .hero h1 em{font-style:italic; color:var(--amber); font-weight:500;}
+  .hero-sub{
+    margin-top:22px; max-width:46ch; font-size:18px; color:rgba(251,246,236,0.82);
+  }
+  .hero-cta-row{display:flex; gap:14px; margin-top:34px; flex-wrap:wrap;}
+  .btn{
+    display:inline-flex; align-items:center; gap:8px;
+    padding:14px 24px; border-radius:999px; font-weight:600; font-size:15px;
+    text-decoration:none; border:1px solid transparent; cursor:pointer;
+    transition:transform .15s ease, box-shadow .15s ease;
+  }
+  .btn:hover{transform:translateY(-2px);}
+  .btn-primary{background:var(--amber); color:var(--pine);}
+  .btn-primary:hover{box-shadow:0 10px 26px rgba(231,167,60,0.35);}
+  .btn-ghost{border-color:rgba(251,246,236,0.4); color:var(--cream);}
+  .btn-ghost:hover{background:rgba(251,246,236,0.08);}
+
+  /* signature: route line */
+  .route{
+    margin-top:64px;
+    padding:26px 0 6px;
+    position:relative;
+  }
+  .route-track{
+    position:relative; height:2px;
+    background-image:linear-gradient(to right, rgba(251,246,236,0.35) 0 10px, transparent 10px 20px);
+    background-size:20px 2px;
+    background-repeat:repeat-x;
+  }
+  .route-stops{display:flex; justify-content:space-between; margin-top:-11px;}
+  .stop{display:flex; flex-direction:column; align-items:center; gap:10px; width:120px;}
+  .stop-dot{
+    width:22px; height:22px; border-radius:50%; background:var(--cream);
+    border:3px solid var(--pine); position:relative; z-index:2;
+    display:flex; align-items:center; justify-content:center;
+  }
+  .stop-dot.active{background:var(--amber); border-color:var(--amber);}
+  .stop-label{font-family:'Space Mono', monospace; font-size:11px; letter-spacing:0.06em; color:rgba(251,246,236,0.75); text-align:center;}
+  .van-icon{
+    position:absolute; top:-19px; left:38%;
+    font-size:22px;
+    animation:drive 7s ease-in-out infinite;
+  }
+  @keyframes drive{
+    0%,100%{left:6%;}
+    50%{left:70%;}
+  }
+  @media (prefers-reduced-motion: reduce){
+    .van-icon{animation:none; left:38%;}
+    .hero-eyebrow .pulse{animation:none;}
+  }
+  @media (max-width:720px){
+    .stop-label{display:none;}
+    .stop{width:auto;}
+  }
+
+  /* ---------- SECTION shared ---------- */
+  section{padding:96px 0;}
+  .section-head{max-width:640px; margin-bottom:56px;}
+  .section-head .eyebrow{color:var(--berry); margin-bottom:14px;}
+  .section-head h2{font-size:clamp(28px,4vw,42px); color:var(--pine);}
+  .section-head p{margin-top:16px; font-size:17px; color:var(--ink-soft);}
+
+  /* ---------- JAK TO DZIAŁA ---------- */
+  .steps{display:grid; grid-template-columns:repeat(3,1fr); gap:28px;}
+  .step{
+    background:var(--cream-2); border-radius:20px; padding:32px 28px;
+    border:1px solid var(--line); position:relative;
+  }
+  .step .num{
+    font-family:'Fraunces', serif; font-size:44px; color:var(--amber-dark);
+    font-weight:600; line-height:1;
+  }
+  .step h3{margin-top:18px; font-size:21px; color:var(--pine);}
+  .step p{margin-top:10px; color:var(--ink-soft); font-size:15px;}
+  @media (max-width:860px){ .steps{grid-template-columns:1fr;} }
+
+  /* ---------- DLACZEGO ---------- */
+  .why{background:var(--cream-2); border-top:1px solid var(--line); border-bottom:1px solid var(--line);}
+  .why-grid{display:grid; grid-template-columns:1.1fr 1fr; gap:56px; align-items:center;}
+  .why-list{display:flex; flex-direction:column; gap:26px;}
+  .why-item{display:flex; gap:18px;}
+  .why-icon{
+    flex:0 0 auto; width:44px; height:44px; border-radius:12px;
+    background:var(--pine); color:var(--amber);
+    display:flex; align-items:center; justify-content:center; font-size:20px;
+  }
+  .why-item h3{font-size:18px; color:var(--pine); margin-bottom:6px;}
+  .why-item p{font-size:15px; color:var(--ink-soft);}
+
+  .card-visual{
+    background:var(--pine); border-radius:24px; padding:36px; color:var(--cream);
+    position:relative; overflow:hidden;
+  }
+  .card-visual::after{
+    content:"🐾"; position:absolute; right:-10px; bottom:-24px; font-size:140px; opacity:0.08;
+  }
+  .card-visual .eyebrow{color:var(--amber); margin-bottom:14px;}
+  .card-visual h3{font-family:'Fraunces',serif; font-size:26px; font-weight:500; max-width:16ch;}
+  .quote{margin-top:22px; font-size:15px; color:rgba(251,246,236,0.8); font-style:italic; border-left:2px solid var(--amber); padding-left:14px;}
+
+  @media (max-width:860px){ .why-grid{grid-template-columns:1fr;} }
+
+  /* ---------- STREFY ---------- */
+  .zones{display:grid; grid-template-columns:repeat(4,1fr); gap:16px;}
+  .zone{
+    border:1px solid var(--line); border-radius:16px; padding:22px 20px;
+    background:var(--cream);
+  }
+  .zone .day{font-family:'Space Mono',monospace; font-size:12px; letter-spacing:0.08em; text-transform:uppercase; color:var(--berry); font-weight:700;}
+  .zone .area{font-family:'Fraunces',serif; font-size:20px; margin-top:8px; color:var(--pine);}
+  @media (max-width:860px){ .zones{grid-template-columns:repeat(2,1fr);} }
+  @media (max-width:520px){ .zones{grid-template-columns:1fr;} }
+  .zones-note{margin-top:22px; font-size:14px; color:var(--ink-soft);}
+
+  /* ---------- POLECENIA ---------- */
+  .refer{
+    background:var(--pine); color:var(--cream); border-radius:28px; padding:56px;
+    display:grid; grid-template-columns:1.2fr 1fr; gap:40px; align-items:center;
+  }
+  .refer h2{font-size:clamp(26px,3.4vw,36px); max-width:14ch;}
+  .refer p{margin-top:14px; color:rgba(251,246,236,0.82); max-width:44ch;}
+  .refer-figures{display:flex; gap:24px;}
+  .fig{background:rgba(251,246,236,0.06); border:1px solid rgba(251,246,236,0.18); border-radius:16px; padding:22px; flex:1;}
+  .fig .amount{font-family:'Fraunces',serif; font-size:32px; color:var(--amber);}
+  .fig .label{font-size:13px; margin-top:6px; color:rgba(251,246,236,0.75);}
+  @media (max-width:860px){ .refer{grid-template-columns:1fr;} }
+
+  /* ---------- SIGNUP ---------- */
+  .signup{text-align:center;}
+  .signup-box{
+    max-width:620px; margin:0 auto; background:var(--cream-2);
+    border:1px solid var(--line); border-radius:24px; padding:48px 40px;
+  }
+  .signup-logo{height:76px; width:auto; margin:0 auto 28px; display:block;}
+  .signup h2{font-size:clamp(26px,3.6vw,36px); color:var(--pine);}
+  .signup p{margin-top:14px; color:var(--ink-soft);}
+  form.signup-form{
+    margin-top:28px; display:flex; gap:10px; flex-wrap:wrap; justify-content:center;
+  }
+  .signup-form input[type=email]{
+    flex:1; min-width:220px; padding:14px 18px; border-radius:999px;
+    border:1px solid var(--line); font-size:15px; font-family:'Inter',sans-serif;
+    background:var(--cream);
+  }
+  .signup-form button{
+    border:none; font-family:'Inter',sans-serif;
+  }
+  .form-note{margin-top:14px; font-size:13px; color:var(--ink-soft);}
+  .form-success{display:none; margin-top:20px; font-weight:600; color:var(--pine);}
+
+  /* ---------- FOOTER ---------- */
+  footer{background:var(--pine); color:rgba(251,246,236,0.75); padding:56px 0 32px;}
+  .footer-grid{display:flex; justify-content:space-between; flex-wrap:wrap; gap:32px; padding-bottom:32px; border-bottom:1px solid rgba(251,246,236,0.15);}
+  .footer-brand{font-family:'Fraunces',serif; color:var(--cream); font-size:22px; font-weight:600;}
+  .footer-tag{margin-top:8px; font-size:14px; max-width:32ch;}
+  .footer-contact{display:flex; flex-direction:column; gap:8px; font-size:14px;}
+  .footer-contact a{text-decoration:none;}
+  .footer-contact a:hover{color:var(--amber);}
+  .footer-bottom{padding-top:22px; font-size:13px; display:flex; justify-content:space-between; flex-wrap:wrap; gap:10px;}
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <div class="wrap">
+    <div class="brand"><img src="logo-icon.png" alt="Van Groom" class="brand-mark"> Van Groom</div>
+    <div class="nav-links">
+      <a href="#jak-to-dziala">Jak to działa</a>
+      <a href="#dlaczego">Dlaczego my</a>
+      <a href="#strefy">Strefy</a>
+      <a href="#polecenia">Polecenia</a>
+    </div>
+    <a class="nav-cta" href="#zapisz-sie">Zostaw kontakt</a>
+  </div>
+</nav>
+
+<header class="hero">
+  <div class="wrap">
+    <div class="hero-eyebrow"><span class="pulse"></span> Startujemy w Warszawie</div>
+    <h1>Groomer wjeżdża<br>pod Wasz dom.<br><em>Pupil zostaje w domu.</em></h1>
+    <p class="hero-sub">Van Groom to mobilny salon pielęgnacji psów — kąpiel, strzyżenie i pełna pielęgnacja bez stresu związanego z dojazdem, poczekalnią i obcym otoczeniem. Wjeżdżamy pod Wasze drzwi, umówieni co do minuty.</p>
+    <div class="hero-cta-row">
+      <a class="btn btn-primary" href="#zapisz-sie">Zapisz się na start ↓</a>
+      <a class="btn btn-ghost" href="#jak-to-dziala">Zobacz jak to działa</a>
+    </div>
+
+    <div class="route">
+      <div class="route-track">
+        <div class="van-icon" aria-hidden="true">🚐</div>
+      </div>
+      <div class="route-stops">
+        <div class="stop"><div class="stop-dot active"></div><div class="stop-label">Umów wizytę</div></div>
+        <div class="stop"><div class="stop-dot"></div><div class="stop-label">Wjeżdżamy do strefy</div></div>
+        <div class="stop"><div class="stop-dot"></div><div class="stop-label">Pielęgnacja pod domem</div></div>
+        <div class="stop"><div class="stop-dot"></div><div class="stop-label">Wypielęgnowany pupil</div></div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<section id="jak-to-dziala">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="eyebrow">Jak to działa</div>
+      <h2>Trzy kroki, zero stresu dla pupila</h2>
+      <p>Van Groom obsługuje Warszawę w stałych strefach dnia — dzięki temu jesteśmy pod Waszym domem punktualnie, a nie „gdzieś w ciągu dnia”.</p>
+    </div>
+    <div class="steps">
+      <div class="step">
+        <div class="num">01</div>
+        <h3>Umawiacie termin</h3>
+        <p>Piszecie lub dzwonicie, podajecie rasę i wielkość psa — od razu dostajecie wycenę i najbliższy termin w Waszej strefie.</p>
+      </div>
+      <div class="step">
+        <div class="num">02</div>
+        <h3>Wjeżdżamy pod dom</h3>
+        <p>W pełni wyposażony van zatrzymuje się pod Waszym adresem — bez ładowania psa do samochodu, bez poczekalni z obcymi psami.</p>
+      </div>
+      <div class="step">
+        <div class="num">03</div>
+        <h3>Pupil wraca czysty i zrelaksowany</h3>
+        <p>Kąpiel, strzyżenie, pazurki i uszy — wszystko w znanym otoczeniu, tuż przy Waszych drzwiach.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="why" id="dlaczego">
+  <div class="wrap">
+    <div class="why-grid">
+      <div>
+        <div class="section-head" style="margin-bottom:36px;">
+          <div class="eyebrow">Dlaczego Van Groom</div>
+          <h2>Pomyślane dla psów, które nie znoszą wyjazdów</h2>
+        </div>
+        <div class="why-list">
+          <div class="why-item">
+            <div class="why-icon">🐾</div>
+            <div>
+              <h3>Bez transportu i poczekalni</h3>
+              <p>Zero stresu związanego z jazdą samochodem i czekaniem obok obcych zwierząt.</p>
+            </div>
+          </div>
+          <div class="why-item">
+            <div class="why-icon">🕓</div>
+            <div>
+              <h3>Elastyczne godziny</h3>
+              <p>Wieczory i weekendy — umawiacie się w porze, która pasuje Waszemu grafikowi, nie odwrotnie.</p>
+            </div>
+          </div>
+          <div class="why-item">
+            <div class="why-icon">📍</div>
+            <div>
+              <h3>Stały termin w Waszej okolicy</h3>
+              <p>Pracujemy w strefach dnia — dzięki temu wiecie dokładnie, kiedy się pojawimy, co tydzień lub co miesiąc.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="card-visual">
+        <div class="eyebrow">Dla właścicieli, którzy...</div>
+        <h3>...traktują psa jak członka rodziny, nie jak zadanie do odhaczenia.</h3>
+        <p class="quote">„Najbardziej zależy nam, żeby pupil wyszedł z wizyty równie spokojny, jak wjechał do niej groomer.”</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="strefy">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="eyebrow">Strefy i grafik</div>
+      <h2>Gdzie i kiedy jeździmy</h2>
+      <p>Na start obsługujemy wybrane dzielnice w stałych dniach tygodnia. Lista będzie rosła wraz z popytem — jeśli Waszej dzielnicy jeszcze nie ma, zostawcie kontakt, damy znać jako pierwszym.</p>
+    </div>
+    <div class="zones">
+      <div class="zone"><div class="day">Poniedziałek</div><div class="area">Mokotów · Ursynów</div></div>
+      <div class="zone"><div class="day">Wtorek</div><div class="area">Wola · Bemowo</div></div>
+      <div class="zone"><div class="day">Czwartek</div><div class="area">Praga-Płd. · Praga-Płn.</div></div>
+      <div class="zone"><div class="day">Sobota</div><div class="area">Żoliborz · Bielany</div></div>
+    </div>
+    <p class="zones-note">Grafik w trakcie dopracowywania podczas fazy pilotażowej — może się jeszcze zmienić.</p>
+  </div>
+</section>
+
+<section id="polecenia">
+  <div class="wrap">
+    <div class="refer">
+      <div>
+        <h2>Polećcie nas sąsiadowi z psem.</h2>
+        <p>Za każde polecenie, które zamieni się w pierwszą wizytę, Wy dostajecie rabat na kolejną pielęgnację, a znajomy — obniżony dojazd na start. Prosto, bez punktów i regulaminów na dwie strony.</p>
+      </div>
+      <div class="refer-figures">
+        <div class="fig">
+          <div class="amount">–20%</div>
+          <div class="label">na kolejną wizytę, gdy polecenie się sprawdzi</div>
+        </div>
+        <div class="fig">
+          <div class="amount">1×</div>
+          <div class="label">obniżony dojazd dla nowego klienta, pierwsza wizyta</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="signup" id="zapisz-sie">
+  <div class="wrap">
+    <div class="signup-box">
+      <img src="logo-full.png" alt="Van Groom — Mobile Dog Spa" class="signup-logo">
+      <h2>Zostańcie pierwszymi klientami</h2>
+      <p>Ruszamy fazę pilotażową w Warszawie. Zostawcie e-mail — napiszemy, gdy tylko otworzymy zapisy w Waszej okolicy, plus dostaniecie kod rabatowy na pierwszą wizytę.</p>
+      <form class="signup-form" id="vg-form">
+        <input type="email" name="email" placeholder="wasz@email.pl" required aria-label="Adres e-mail">
+        <button type="submit" class="btn btn-primary">Zapisz mnie</button>
+      </form>
+      <p class="form-success" id="vg-success">Dziękujemy! Odezwiemy się, gdy tylko ruszymy w Waszej okolicy 🐾</p>
+      <p class="form-note">Możecie też napisać bezpośrednio: <a href="mailto:kontakt@vangroom.pl" style="color:var(--berry); font-weight:600;">kontakt@vangroom.pl</a></p>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="footer-grid">
+      <div>
+        <div class="footer-brand">Van Groom</div>
+        <p class="footer-tag">Mobilny salon pielęgnacji psów. Warszawa i okolice.</p>
+      </div>
+      <div class="footer-contact">
+        <a href="mailto:kontakt@vangroom.pl">kontakt@vangroom.pl</a>
+        <a href="tel:+48000000000">+48 000 000 000</a>
+        <a href="https://instagram.com/vangroom.pl" target="_blank" rel="noopener">@vangroom.pl na Instagramie</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 Van Groom. Wszelkie prawa zastrzeżone.</span>
+      <span>vangroom.pl</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // Prosta obsługa formularza zapisu — patrz instrukcja konfiguracji w README
+  // dla podłączenia realnego wysyłania (Formspree / mailto fallback).
+  document.getElementById('vg-form').addEventListener('submit', function(e){
+    e.preventDefault();
+    var email = this.querySelector('input[type=email]').value;
+    // Fallback: otwiera klienta poczty z gotową wiadomością.
+    // Zamień na fetch() do Formspree zgodnie z instrukcją, żeby nie wymagać klienta poczty.
+    window.location.href = 'mailto:kontakt@vangroom.pl?subject=Zapisz%20mnie%20-%20Van%20Groom&body=Prosz%C4%99%20o%20kontakt%20na%20adres%3A%20' + encodeURIComponent(email);
+    document.getElementById('vg-success').style.display = 'block';
+    this.reset();
+  });
+</script>
+
+</body>
+</html>
